@@ -16,7 +16,7 @@ class Cart implements CartInterface
 	public function add($product)
 	{
 
-		if(count($_SESSION['products'][$product['id']]) >= 1){
+		if(count($_SESSION['products'][$product['id']])){
 		  throw new Exception("O produto já existe");
 		}
 
@@ -31,7 +31,7 @@ class Cart implements CartInterface
 	public function delete($product)
 	{
 
-		
+				
 	}
 
 
