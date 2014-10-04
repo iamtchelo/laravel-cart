@@ -3,18 +3,36 @@ namespace Laracart\Cart;
 
 class Cart implements CartInterface
 {
+
+
 	public function all()
 	{
 
 	}
 
-	public function add($key)
+	/**
+	* Add to cart
+	*/
+	public function add($product)
 	{
+
+		if(count($_SESSION['products'][$product['id']]) >= 1){
+		  throw new Exception("O produto já existe");
+		}
+
+		$_SESSION['products'][$product['id']] = $product ;
 
 	}
 
-	public function delete($key)
+	
+	/**
+	* Delete to cart
+	*/
+	public function delete($product)
 	{
+
 		
 	}
+
+
 }

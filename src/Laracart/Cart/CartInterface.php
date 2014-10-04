@@ -11,10 +11,10 @@ interface CartInterface
 	/**
 	 * Add product by key
 	 */
-	public function add($key);
+	public function add($product);
 
 	/**
 	 * Delete product by key
 	 */
-	public function delete($key);
+	public function delete($product);
 }
