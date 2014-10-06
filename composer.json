@@ -9,7 +9,10 @@
         }
     ],
     "minimum-stability": "dev",
-    "require": {},
+    "require": {
+        "illuminate/session": "5.0.*@dev",
+        "illuminate/support": "5.0.*@dev"
+    },
      "autoload": {
         "psr-0": {
             "Laracart": "src/"
