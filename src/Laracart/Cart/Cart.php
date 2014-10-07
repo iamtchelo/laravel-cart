@@ -24,25 +24,31 @@ class Cart implements CartInterface, \Countable
 	}
 
 	/**
-	 * Get all products
+	 * Get all products on cart
+	 * 
+	 * @param void
+	 * @return array|false
 	 */
 	public function getProducts()
 	{
 		if (count($_SESSION[$this->prefix]) >= 1) {
 			return $_SESSION[$this->prefix];
 		}
+		else return false;
 	}
 
 	/**
 	 * Get product by id
 	 *
 	 * @param integer $id
+	 * @return array| bool 
 	 */
 	public function getProductById($id)
 	{
 		if ($this->has($id)) {
 			return $_SESSION[$this->prefix][$id];
 		}
+		else return false;
 	}
 
 	/**
@@ -50,6 +56,7 @@ class Cart implements CartInterface, \Countable
 	 * 
 	 * @param array $product
 	 * @param integer $quantity
+	 * @return void
 	 */
 	public function addProduct($product, $quantity = null)
 	{	
@@ -73,19 +80,23 @@ class Cart implements CartInterface, \Countable
 	 * Delete product by key
 	 *
 	 * @param integer $id
+	 * @return bool
 	 */
 	public function deleteProduct($id)
 	{	
 		if ($this->has($id)) {
 			unset($_SESSION[$this->prefix][$id]);
+			return true;
 		}	
+
+		return false;
 	}
 
 	/**
 	 * If has product
 	 *
 	 * @param integer $id
-	 * @return TRUE if has or FALSE
+	 * @return bool
 	 */
 	private function has($id)
 	{
@@ -94,6 +105,9 @@ class Cart implements CartInterface, \Countable
 
 	/**
 	 * Count all products
+	 *
+	 * @param void
+	 * @return integer 
 	 */
 	public function count()
 	{
@@ -101,6 +115,6 @@ class Cart implements CartInterface, \Countable
 			$this->totalProduct += $product['quantity'];
 		}
 
-		return $this->totalProduct;
+		return (int) $this->totalProduct;
 	}
 }
